@@ -95,39 +95,12 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
             ),
           ),
         )),
-        // Option 2 - title
-        // title: Center(
-        //     child: Text(widget.title,
-        //         style: TextStyle(
-        //             fontSize: 16.0,
-        //             color: Color(0XFF231F20),
-        //             background: Paint()
-        //               ..color = Color(0XFFFDCA44)
-        //               ..style = PaintingStyle.stroke
-        //               ..strokeWidth = 20.0
-        //               ..strokeJoin = StrokeJoin.round)
-        //       )
-        // ),
         // Option 1 - leading icon
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           color: Colors.black,
           onPressed: () {},
         ),
-        // Option 2 - leading icon
-        // leading: FlatButton.icon(
-        //   onPressed: null,
-        //   icon: Icon(
-        //     Icons.arrow_back,
-        //     color: Colors.black,
-        //   ),
-        //   label: Text('Back'),
-        //   padding: EdgeInsets.fromLTRB(32.0, 12.0, 32.0, 12.0),
-        //   splashColor: Color(0XFFFDCA44),
-        //   shape: RoundedRectangleBorder(
-        //     borderRadius: BorderRadius.circular(30.0),
-        //   ),
-        // ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -135,10 +108,6 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Text(
-            //   'Enter Pin Number',
-            //   style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w700),
-            // ),
             Expanded(
               child: Container(
                 margin: EdgeInsets.all(12.0),
@@ -292,78 +261,6 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
                         ),
                       ),
                     ),
-                    // SizedBox(width: 8),
-                    // Expanded(
-                    //   child: TextField(
-                    //     controller: _pinEditingController[4],
-                    //     showCursor: _showingCursor[4],
-                    //     focusNode: _focusNodes[4],
-                    //     keyboardType: TextInputType.number,
-                    //     textAlign: TextAlign.center,
-                    //     inputFormatters: [
-                    //       LengthLimitingTextInputFormatter(1),
-                    //       FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
-                    //     ],
-                    //     onChanged: (val) {
-                    //       if (val.isNotEmpty && val.length == 1) {
-                    //         FocusScope.of(context).requestFocus(_focusNodes[5]);
-                    //         _showingCursor[5] = true;
-                    //         _pin[4] = val;
-                    //         debugPrint('_pin[4]: $_pin[4]');
-                    //       }
-                    //     },
-                    //     style: TextStyle(
-                    //         color: Colors.white,
-                    //         fontSize: 26.0,
-                    //         fontWeight: FontWeight.bold),
-                    //     decoration: InputDecoration(
-                    //       contentPadding: EdgeInsets.all(12.0),
-                    //       focusedBorder: OutlineInputBorder(
-                    //           borderSide:
-                    //               BorderSide(color: Colors.white, width: 3.0),
-                    //           borderRadius: BorderRadius.circular(15.0)),
-                    //       enabledBorder: OutlineInputBorder(
-                    //           borderSide:
-                    //               BorderSide(color: Colors.white, width: 3.0),
-                    //           borderRadius: BorderRadius.circular(15.0)),
-                    //     ),
-                    //   ),
-                    // ),
-                    // SizedBox(width: 8),
-                    // Expanded(
-                    //   child: TextField(
-                    //     controller: _pinEditingController[5],
-                    //     showCursor: _showingCursor[5],
-                    //     focusNode: _focusNodes[5],
-                    //     keyboardType: TextInputType.number,
-                    //     textAlign: TextAlign.center,
-                    //     inputFormatters: [
-                    //       LengthLimitingTextInputFormatter(1),
-                    //       FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
-                    //     ],
-                    //     onChanged: (val) {
-                    //       if (val.isNotEmpty && val.length == 1) {
-                    //         _pin[5] = val;
-                    //         debugPrint('_pin[5]: $_pin[5]');
-                    //       }
-                    //     },
-                    //     style: TextStyle(
-                    //         color: Colors.white,
-                    //         fontSize: 26.0,
-                    //         fontWeight: FontWeight.bold),
-                    //     decoration: InputDecoration(
-                    //       contentPadding: EdgeInsets.all(12.0),
-                    //       focusedBorder: OutlineInputBorder(
-                    //           borderSide:
-                    //               BorderSide(color: Colors.white, width: 3.0),
-                    //           borderRadius: BorderRadius.circular(15.0)),
-                    //       enabledBorder: OutlineInputBorder(
-                    //           borderSide:
-                    //               BorderSide(color: Colors.white, width: 3.0),
-                    //           borderRadius: BorderRadius.circular(15.0)),
-                    //     ),
-                    //   ),
-                    // )
                   ],
                 ),
               ),
@@ -379,24 +276,6 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
             SizedBox(
               height: 22.0,
             ),
-            // RaisedButton(
-            //       child: Text(
-            //         "Verify Me",
-            //         style: TextStyle(fontSize: 16.0, color: Colors.white),
-            //       ),
-            //       shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadius.circular(30.0),
-            //       ),
-            //       color: Colors.blue,
-            //       padding: EdgeInsets.fromLTRB(35.0, 15.0, 35.0, 15.0),
-            //       onPressed: () {
-            //         // debugPrint('Verify PhoneNum: $strPhoneNum');
-            //         try {
-            //           SystemChannels.textInput.invokeMapMethod('TextInput.hide');
-            //         } on Exception catch (e) {
-            //           print(e.runtimeType);
-            //         }
-            //       }),
             FlatButton(
               color: Color(0XFFFDCA44),
               textColor: Colors.white,
