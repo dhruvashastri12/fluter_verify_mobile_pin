@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: VerifyMobilePin(title: 'Verify Mobile Pin'),
+      home: VerifyMobilePin(title: 'Verify Phone'),
     );
   }
 }
@@ -71,8 +71,63 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0XFF75AE43),
       appBar: AppBar(
-        title: Text(widget.title),
+        backgroundColor: Color(0XFF75AE43),
+        elevation: 0,
+        // Option 1 - title
+        title: Center(
+            child: DecoratedBox(
+          decoration: ShapeDecoration(
+            color: Color(0XFFFDCA44),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(25.0, 8.0, 25.0, 8.0),
+            child: Text(
+              widget.title,
+              style: TextStyle(
+                  fontSize: 16.0,
+                  color: Color(0XFF231F20),
+                  fontWeight: FontWeight.w700),
+            ),
+          ),
+        )),
+        // Option 2 - title
+        // title: Center(
+        //     child: Text(widget.title,
+        //         style: TextStyle(
+        //             fontSize: 16.0,
+        //             color: Color(0XFF231F20),
+        //             background: Paint()
+        //               ..color = Color(0XFFFDCA44)
+        //               ..style = PaintingStyle.stroke
+        //               ..strokeWidth = 20.0
+        //               ..strokeJoin = StrokeJoin.round)
+        //       )
+        // ),
+        // Option 1 - leading icon
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: Colors.black,
+          onPressed: () {},
+        ),
+        // Option 2 - leading icon
+        // leading: FlatButton.icon(
+        //   onPressed: null,
+        //   icon: Icon(
+        //     Icons.arrow_back,
+        //     color: Colors.black,
+        //   ),
+        //   label: Text('Back'),
+        //   padding: EdgeInsets.fromLTRB(32.0, 12.0, 32.0, 12.0),
+        //   splashColor: Color(0XFFFDCA44),
+        //   shape: RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.circular(30.0),
+        //   ),
+        // ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -80,13 +135,13 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              'Enter Pin Number',
-              style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w700),
-            ),
+            // Text(
+            //   'Enter Pin Number',
+            //   style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w700),
+            // ),
             Expanded(
               child: Container(
-                margin: EdgeInsets.all(8.0),
+                margin: EdgeInsets.all(12.0),
                 child: Row(
                   children: [
                     Expanded(
@@ -94,8 +149,13 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
                         controller: _pinEditingController[0],
                         showCursor: true,
                         autofocus: true,
+                        cursorColor: Colors.white,
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                        ],
                         onChanged: (val) {
                           if (val.isNotEmpty && val.length == 1) {
                             FocusScope.of(context).requestFocus(_focusNodes[1]);
@@ -104,9 +164,24 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
                             debugPrint('_pin[0]: $_pin[0]');
                           }
                         },
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 26.0,
+                            fontWeight: FontWeight.bold),
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(12.0),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 3.0),
+                              borderRadius: BorderRadius.circular(15.0)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 3.0),
+                              borderRadius: BorderRadius.circular(15.0)),
+                        ),
                       ),
                     ),
-                    SizedBox(width: 8),
+                    SizedBox(width: 12),
                     Expanded(
                       child: TextField(
                         controller: _pinEditingController[1],
@@ -114,6 +189,10 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
                         focusNode: _focusNodes[1],
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                        ],
                         onChanged: (val) {
                           if (val.isNotEmpty && val.length == 1) {
                             FocusScope.of(context).requestFocus(_focusNodes[2]);
@@ -122,9 +201,24 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
                             debugPrint('_pin[1]: $_pin[1]');
                           }
                         },
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 26.0,
+                            fontWeight: FontWeight.bold),
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(12.0),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 3.0),
+                              borderRadius: BorderRadius.circular(15.0)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 3.0),
+                              borderRadius: BorderRadius.circular(15.0)),
+                        ),
                       ),
                     ),
-                    SizedBox(width: 8),
+                    SizedBox(width: 12),
                     Expanded(
                       child: TextField(
                         controller: _pinEditingController[2],
@@ -132,6 +226,10 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
                         focusNode: _focusNodes[2],
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                        ],
                         onChanged: (val) {
                           if (val.isNotEmpty && val.length == 1) {
                             FocusScope.of(context).requestFocus(_focusNodes[3]);
@@ -140,9 +238,24 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
                             debugPrint('_pin[2]: $_pin[2]');
                           }
                         },
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 26.0,
+                            fontWeight: FontWeight.bold),
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(12.0),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 3.0),
+                              borderRadius: BorderRadius.circular(15.0)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 3.0),
+                              borderRadius: BorderRadius.circular(15.0)),
+                        ),
                       ),
                     ),
-                    SizedBox(width: 8),
+                    SizedBox(width: 12),
                     Expanded(
                       child: TextField(
                         controller: _pinEditingController[3],
@@ -150,6 +263,10 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
                         focusNode: _focusNodes[3],
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                        ],
                         onChanged: (val) {
                           if (val.isNotEmpty && val.length == 1) {
                             FocusScope.of(context).requestFocus(_focusNodes[4]);
@@ -158,51 +275,136 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
                             debugPrint('_pin[3]: $_pin[3]');
                           }
                         },
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 26.0,
+                            fontWeight: FontWeight.bold),
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(12.0),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 3.0),
+                              borderRadius: BorderRadius.circular(15.0)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 3.0),
+                              borderRadius: BorderRadius.circular(15.0)),
+                        ),
                       ),
                     ),
-                    SizedBox(width: 8),
-                    Expanded(
-                      child: TextField(
-                        controller: _pinEditingController[4],
-                        showCursor: _showingCursor[4],
-                        focusNode: _focusNodes[4],
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        onChanged: (val) {
-                          if (val.isNotEmpty && val.length == 1) {
-                            FocusScope.of(context).requestFocus(_focusNodes[5]);
-                            _showingCursor[5] = true;
-                            _pin[4] = val;
-                            debugPrint('_pin[4]: $_pin[4]');
-                          }
-                        },
-                      ),
-                    ),
-                    SizedBox(width: 8),
-                    Expanded(
-                      child: TextField(
-                        controller: _pinEditingController[5],
-                        showCursor: _showingCursor[5],
-                        focusNode: _focusNodes[5],
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        onChanged: (val) {
-                          if (val.isNotEmpty && val.length == 1) {
-                            _pin[5] = val;
-                            debugPrint('_pin[5]: $_pin[5]');
-                          }
-                        },
-                      ),
-                    )
+                    // SizedBox(width: 8),
+                    // Expanded(
+                    //   child: TextField(
+                    //     controller: _pinEditingController[4],
+                    //     showCursor: _showingCursor[4],
+                    //     focusNode: _focusNodes[4],
+                    //     keyboardType: TextInputType.number,
+                    //     textAlign: TextAlign.center,
+                    //     inputFormatters: [
+                    //       LengthLimitingTextInputFormatter(1),
+                    //       FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                    //     ],
+                    //     onChanged: (val) {
+                    //       if (val.isNotEmpty && val.length == 1) {
+                    //         FocusScope.of(context).requestFocus(_focusNodes[5]);
+                    //         _showingCursor[5] = true;
+                    //         _pin[4] = val;
+                    //         debugPrint('_pin[4]: $_pin[4]');
+                    //       }
+                    //     },
+                    //     style: TextStyle(
+                    //         color: Colors.white,
+                    //         fontSize: 26.0,
+                    //         fontWeight: FontWeight.bold),
+                    //     decoration: InputDecoration(
+                    //       contentPadding: EdgeInsets.all(12.0),
+                    //       focusedBorder: OutlineInputBorder(
+                    //           borderSide:
+                    //               BorderSide(color: Colors.white, width: 3.0),
+                    //           borderRadius: BorderRadius.circular(15.0)),
+                    //       enabledBorder: OutlineInputBorder(
+                    //           borderSide:
+                    //               BorderSide(color: Colors.white, width: 3.0),
+                    //           borderRadius: BorderRadius.circular(15.0)),
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(width: 8),
+                    // Expanded(
+                    //   child: TextField(
+                    //     controller: _pinEditingController[5],
+                    //     showCursor: _showingCursor[5],
+                    //     focusNode: _focusNodes[5],
+                    //     keyboardType: TextInputType.number,
+                    //     textAlign: TextAlign.center,
+                    //     inputFormatters: [
+                    //       LengthLimitingTextInputFormatter(1),
+                    //       FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                    //     ],
+                    //     onChanged: (val) {
+                    //       if (val.isNotEmpty && val.length == 1) {
+                    //         _pin[5] = val;
+                    //         debugPrint('_pin[5]: $_pin[5]');
+                    //       }
+                    //     },
+                    //     style: TextStyle(
+                    //         color: Colors.white,
+                    //         fontSize: 26.0,
+                    //         fontWeight: FontWeight.bold),
+                    //     decoration: InputDecoration(
+                    //       contentPadding: EdgeInsets.all(12.0),
+                    //       focusedBorder: OutlineInputBorder(
+                    //           borderSide:
+                    //               BorderSide(color: Colors.white, width: 3.0),
+                    //           borderRadius: BorderRadius.circular(15.0)),
+                    //       enabledBorder: OutlineInputBorder(
+                    //           borderSide:
+                    //               BorderSide(color: Colors.white, width: 3.0),
+                    //           borderRadius: BorderRadius.circular(15.0)),
+                    //     ),
+                    //   ),
+                    // )
                   ],
                 ),
               ),
             ),
+            Text(
+              'Didn\'t receive code? Request again',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w700),
+            ),
+            SizedBox(
+              height: 22.0,
+            ),
+            // RaisedButton(
+            //       child: Text(
+            //         "Verify Me",
+            //         style: TextStyle(fontSize: 16.0, color: Colors.white),
+            //       ),
+            //       shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.circular(30.0),
+            //       ),
+            //       color: Colors.blue,
+            //       padding: EdgeInsets.fromLTRB(35.0, 15.0, 35.0, 15.0),
+            //       onPressed: () {
+            //         // debugPrint('Verify PhoneNum: $strPhoneNum');
+            //         try {
+            //           SystemChannels.textInput.invokeMapMethod('TextInput.hide');
+            //         } on Exception catch (e) {
+            //           print(e.runtimeType);
+            //         }
+            //       }),
             FlatButton(
-              color: Colors.blue,
+              color: Color(0XFFFDCA44),
               textColor: Colors.white,
-              padding: EdgeInsets.all(8.0),
-              splashColor: Colors.blueAccent,
+              padding: EdgeInsets.fromLTRB(32.0, 12.0, 32.0, 12.0),
+              splashColor: Color(0XFFFDCA44),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
               onPressed: () {
                 if (_pin.isNotEmpty) {
                   hideTextVisibility(true);
@@ -220,8 +422,11 @@ class _VerifyMobilePinState extends State<VerifyMobilePin> {
                 // _pin.clear();
               },
               child: Text(
-                "Submit",
-                style: TextStyle(fontSize: 20.0),
+                "Verify and Create Account",
+                style: TextStyle(
+                    color: Color(0XFF231F20),
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(height: 10.0),
